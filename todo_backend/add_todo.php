@@ -8,7 +8,7 @@ include 'db.php';
 
 $data = json_decode(file_get_contents('php://input'), true);
 
-if (isset($data['title'], $data['description'], $data['date'], $data['time'])) {
+if (isset($data['title'], $data['date'], $data['time'])) {
     $title = $data['title'];
     $date = $data['date'];
     $time = $data['time'];
