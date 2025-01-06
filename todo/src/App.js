@@ -10,6 +10,7 @@ function App() {
   const [newDate, setNewDate] = useState("");
   const [newTime, setNewTime] = useState("00:00");
   const [currentEdit, setCurrentEdit] = useState(null);
+  const [isModalOpen, setIsModalOpen] = useState(false); // Controls modal visibility
 
   const fetchTodos = async () => {
     try {
@@ -76,10 +77,10 @@ function App() {
   const handleEdit = (id, todo) => {
     setCurrentEdit(id);
     setNewTitle(todo.title);
-    setNewDescription(todo.description);
     setNewDate(todo.date);
     setNewTime(todo.time);
-  };
+    setIsModalOpen(true); // Open modal for editing
+  };  
 
   const resetForm = () => {
     setNewTitle("");
@@ -147,16 +148,29 @@ function App() {
   return (
     <div className="App">
       <h1>My Todos</h1>
-      <TodoForm
-        newTitle={newTitle}
-        newDate={newDate}
-        newTime={newTime}
-        setNewTitle={setNewTitle}
-        setNewDate={setNewDate}
-        setNewTime={setNewTime}
-        handleAddTodo={handleAddTodo}
-        currentEdit={currentEdit}
-      />
+      <button className="open-modal-btn" onClick={() => setIsModalOpen(true)}>
+        Add Task
+      </button>
+
+      {isModalOpen && (
+        <div className="modal-overlay">
+          <div className="modal-content">
+            <TodoForm
+              newTitle={newTitle}
+              newDate={newDate}
+              newTime={newTime}
+              setNewTitle={setNewTitle}
+              setNewDate={setNewDate}
+              setNewTime={setNewTime}
+              handleAddTodo={handleAddTodo}
+              currentEdit={currentEdit}
+            />
+            <button className="close-modal-btn" onClick={() => setIsModalOpen(false)}>
+              Close
+            </button>
+          </div>
+        </div>
+      )}
 
       <TodoList
         grouped={groupedTodos}
