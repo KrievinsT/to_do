@@ -13,7 +13,7 @@ function App() {
 
   const fetchTodos = async () => {
     try {
-      const response = await fetch("http://localhost/Prakse/TO-DO/todo_backend/get_todos.php");
+      const response = await fetch("http://localhost/Prakse/Homeifye/to_do/todo_backend/get_todos.php");
       const data = await response.json();
       setTodos(data);
     } catch (error) {
@@ -33,7 +33,7 @@ function App() {
 
     const newTodo = { title: newTitle, description: newDescription, date: newDate, time: newTime };
     try {
-      const response = await fetch("http://localhost/Prakse/TO-DO/todo_backend/add_todo.php", {
+      const response = await fetch("http://localhost/Prakse/Homeifye/to_do/todo_backend/add_todo.php", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(newTodo),
@@ -58,7 +58,7 @@ function App() {
     };
 
     try {
-      const response = await fetch("http://localhost/Prakse/TO-DO/todo_backend/update_todo.php", {
+      const response = await fetch("http://localhost/Prakse/Homeifye/to_do/todo_backend/update_todo.php", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(updatedTodo),
@@ -91,7 +91,7 @@ function App() {
 
   const handleDeleteTodo = async (id) => {
     try {
-      const response = await fetch("http://localhost/Prakse/TO-DO/todo_backend/delete_todo.php", {
+      const response = await fetch("http://localhost/Prakse/Homeifye/to_do/todo_backend/delete_todo.php", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ id }),
@@ -105,7 +105,7 @@ function App() {
 
   const handleComplete = async (id) => {
     try {
-      const response = await fetch("http://localhost/Prakse/TO-DO/todo_backend/complete_todo.php", {
+      const response = await fetch("http://localhost/Prakse/Homeifye/to_do/todo_backend/complete_todo.php", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ id }),
